@@ -1,0 +1,298 @@
+═══════════════════════════════════════════════════════════════════════════
+                    🎵 SPOTIFY WIDGET - VISUAL GUIDE 🎵
+═══════════════════════════════════════════════════════════════════════════
+
+
+┌─────────────────────────────────────────────────────────────────────────┐
+│                         EXPECTED VISUAL RESULT                           │
+└─────────────────────────────────────────────────────────────────────────┘
+
+
+STATE 1: MUSIC PLAYING
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+                                           Your Website Content
+                                           ────────────────────
+                                           
+                                           
+                                           
+                                           
+                                           ╭───────────────────────────────╮
+                                           │ 🎨 Glassmorphic Pill Widget  │
+                                           │                              │
+                                           │  ╭─╮  Blinding Lights    ║║║ │
+                                           │  │●│  The Weeknd         ║║║ │
+                                           │  ╰─╯                     ║║║ │
+                                           │   ↑         ↑             ↑  │
+                                           │ Album    Song Info    Waveform│
+                                           │  (rotating)  (truncated)     │
+                                           ╰───────────────────────────────╯
+                                                ↑ Fixed position
+                                                  bottom-right corner
+
+
+VISUAL DETAILS:
+───────────────
+• Background: Semi-transparent dark (#171717 @ 75% opacity)
+• Blur Effect: Heavy backdrop blur (24px)
+• Border: Subtle white border (10% opacity)
+• Shadow: Deep black shadow with spread
+• Height: 56px (fixed)
+• Width: 200-280px (dynamic based on content)
+• Border Radius: Full pill shape (rounded-full)
+
+
+ALBUM ART:
+──────────
+• Size: 36px × 36px
+• Shape: Circle (rounded-full)
+• Animation: Slow rotation (8 seconds per full rotation)
+• Style: Smooth, continuous spin
+
+
+TEXT LAYOUT:
+────────────
+Song Title:
+  • Font: Medium weight, 14px (text-sm)
+  • Color: White (#FFFFFF)
+  • Max Width: 140px
+  • Truncation: Ellipsis (...) if too long
+  • Line Height: Tight
+
+Artist Name:
+  • Font: Normal weight, 10px (text-[10px])
+  • Color: Gray (#9CA3AF)
+  • Max Width: 140px
+  • Truncation: Ellipsis (...) if too long
+  • Letter Spacing: Wide
+
+
+WAVEFORM ANIMATION:
+───────────────────
+  ║     ▁
+  ║    ╱ ╲    Bar 1: 8px → 16px → 8px (0.5s cycle)
+  ║ ▂ ╱   ╲   Bar 2: 12px → 8px → 12px (0.6s cycle, 0.1s delay)
+  ║╱ ╲     ╲  Bar 3: 10px → 14px → 10px (0.7s cycle, 0.2s delay)
+  ╚═════════
+   Bar Specs:
+   • Width: 3px each
+   • Gap: 3px between bars
+   • Color: Spotify Green (#22C55E)
+   • Shape: Rounded ends (rounded-full)
+   • Animation: Independent oscillation
+
+
+HOVER STATE:
+────────────
+Before Hover:    ╭─────────────────╮
+                 │  ●  Song  ║║║  │
+
+After Hover:     ╭────────────────────╮  ← Scales to 103%
+                 │  ●  Song  ║║║    │  ← Green glow appears
+                 ╰────────────────────╯  ← Border brightens
+                      ↑
+                   Subtle green shadow (#22C55E @ 20% opacity)
+
+Transition: Smooth, 300ms ease-out
+
+
+CLICK BEHAVIOR:
+───────────────
+• Opens Spotify song page in new tab
+• URL: https://open.spotify.com/track/{track_id}
+• Active state: Briefly scales down to 98%
+• Cursor: Pointer (hand icon)
+
+
+
+STATE 2: NO MUSIC PLAYING (OFFLINE)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+                                           Your Website Content
+                                           ────────────────────
+                                           
+                                           
+                                           
+                                           
+                                           ╭──────────────╮
+                                           │ 🎧  Offline  │  ← Smaller, more subtle
+                                           ╰──────────────╯
+
+
+VISUAL DETAILS:
+───────────────
+• Background: More transparent (#171717 @ 60% opacity)
+• Blur Effect: Medium backdrop blur (16px)
+• Border: Barely visible white border (5% opacity)
+• Shadow: Lighter shadow
+• Height: 40px (smaller than playing state)
+• Width: Auto-fit content
+• Icon: Spotify logo in gray (#6B7280)
+• Text: "Offline" in gray, 10px
+
+
+ANIMATION TRANSITIONS:
+──────────────────────
+Playing → Offline:
+  • Fade out: 300ms
+  • Scale down: 0.9 → 0.8
+  • Slide down: 20px
+
+Offline → Playing:
+  • Fade in: 300ms
+  • Scale up: 0.9 → 1.0
+  • Slide up: from 20px below
+
+
+
+RESPONSIVE BEHAVIOR
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Desktop (> 768px):
+┌────────────────────────────────────────────────┐
+│                                                │
+│  Content                                       │
+│                        ╭──────────────────╮   │
+│                        │  ●  Song  ║║║    │   │ ← 24px from bottom
+│                        ╰──────────────────╯   │   24px from right
+└────────────────────────────────────────────────┘
+
+Mobile (< 768px):
+┌─────────────────────┐
+│                     │
+│  Content            │
+│  ╭─────────────╮   │
+│  │ ●  Song ║║║ │   │ ← Slightly smaller
+│  ╰─────────────╯   │   but still visible
+└─────────────────────┘
+
+
+POSITION OPTIONS:
+─────────────────
+Bottom Right (default): bottom-6 right-6
+Bottom Left:            bottom-6 left-6
+Top Right:             top-6 right-6
+Top Left:              top-6 left-6
+
+The widget is FIXED positioned, meaning:
+✓ Stays in place while scrolling
+✓ Floats above all content (z-50)
+✓ Doesn't affect page layout
+✓ Always visible
+
+
+
+COLOR PALETTE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Background Colors:
+  • Main BG: #171717 (neutral-900) @ 75% opacity
+  • Offline BG: #171717 @ 60% opacity
+
+Border Colors:
+  • Normal: #FFFFFF @ 10% opacity
+  • Hover: #FFFFFF @ 20% opacity
+  • Offline: #FFFFFF @ 5% opacity
+
+Text Colors:
+  • Song Title: #FFFFFF (white)
+  • Artist: #9CA3AF (gray-400)
+  • Offline Text: #6B7280 (gray-500)
+
+Accent Colors:
+  • Waveform: #22C55E (green-500) - Spotify green
+  • Hover Glow: #22C55E @ 20% opacity
+  • Icon (Offline): #6B7280 (gray-500)
+
+Shadow Colors:
+  • Main Shadow: #000000 @ 50% opacity
+  • Hover Shadow: #22C55E @ 20% opacity
+
+
+
+TECHNICAL SPECIFICATIONS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Component Type: Client Component ('use client')
+Framework: Next.js 14+ App Router
+Language: TypeScript
+Styling: Tailwind CSS
+
+Data Fetching:
+  • Library: SWR
+  • Polling Interval: 5000ms (5 seconds)
+  • Endpoint: /api/spotify
+  • Method: GET
+
+Animations:
+  • Library: Framer Motion
+  • Album Rotation: CSS animation (Tailwind custom)
+  • Waveform: Framer Motion (independent timings)
+  • Enter/Exit: Framer Motion AnimatePresence
+
+Performance:
+  • No layout shift (fixed position)
+  • Lazy loaded (only renders when data available)
+  • Optimized images (Spotify CDN)
+  • Minimal re-renders (SWR caching)
+
+
+
+BROWSER COMPATIBILITY
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+✅ Chrome 90+      Full support
+✅ Firefox 88+     Full support
+✅ Safari 14+      Full support (webkit prefixes handled by Tailwind)
+✅ Edge 90+        Full support
+✅ Mobile Safari   Full support
+✅ Chrome Android  Full support
+
+Note: backdrop-filter requires modern browsers (2020+)
+
+
+
+ACCESSIBILITY
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+✓ Semantic HTML: Uses <a> tag for clickable link
+✓ Alt Text: Album art has descriptive alt attribute
+✓ Keyboard Navigation: Fully keyboard accessible
+✓ Screen Readers: Announces song and artist names
+✓ Focus Indicators: Browser default focus outline preserved
+✓ ARIA: rel="noopener noreferrer" for security
+✓ Color Contrast: Meets WCAG AA standards
+
+
+
+FILE CHECKLIST
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+✅ .env.local                    Environment variables
+✅ lib/spotify.js                API helper functions
+✅ app/api/spotify/route.js      Next.js API endpoint
+✅ components/SpotifyPill.tsx    Main widget component
+✅ tailwind.config.js            Custom animations
+
+📚 Documentation:
+✅ README.md                     Project overview
+✅ SPOTIFY_SETUP.md              Setup instructions
+✅ CHECKLIST.md                  Implementation checklist
+✅ INTEGRATION_EXAMPLES.js       Code examples
+✅ QUICK_REFERENCE.txt           Quick reference
+✅ VISUAL_GUIDE.txt              This file!
+
+
+
+═══════════════════════════════════════════════════════════════════════════
+                              🎉 YOU'RE ALL SET! 🎉
+═══════════════════════════════════════════════════════════════════════════
+
+Next Steps:
+1. Fill in .env.local with your Spotify credentials
+2. Add <SpotifyPill /> to your page
+3. Run: npm run dev
+4. Play a song on Spotify
+5. Watch the magic happen! ✨
+
+═══════════════════════════════════════════════════════════════════════════

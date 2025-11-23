@@ -17,6 +17,9 @@ interface SpotifyData {
 export default function SpotifyPill() {
   const { data } = useSWR<SpotifyData>('/api/spotify', fetcher, {
     refreshInterval: 5000, // Poll every 5 seconds
+    dedupingInterval: 0, // Disable deduplication
+    revalidateOnFocus: true, // Revalidate when window gets focus
+    revalidateOnReconnect: true, // Revalidate when reconnecting
   });
 
   if (!data) return null;

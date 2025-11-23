@@ -9,7 +9,7 @@ def get_refresh_token():
     # 1. INPUTS
     client_id = input("Enter your Spotify Client ID: ").strip()
     client_secret = input("Enter your Spotify Client Secret: ").strip()
-    redirect_uri = "http://localhost:3000" # Must match Spotify Dashboard exactly
+    redirect_uri = "http://127.0.0.1:3000" # Must match Spotify Dashboard exactly
 
     # 2. AUTHORIZE URL
     # We need these scopes to see what you are playing

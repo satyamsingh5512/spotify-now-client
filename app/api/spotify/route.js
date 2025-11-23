@@ -1,20 +1,33 @@
 import { getNowPlaying } from '@/lib/spotify';
 
 export const dynamic = 'force-dynamic';
+export const revalidate = 0;
 
 export async function GET() {
   const response = await getNowPlaying();
 
   // No song playing
   if (response.status === 204 || response.status > 400) {
-    return Response.json({ isPlaying: false });
+    return Response.json({ isPlaying: false }, {
+      headers: {
+        'Cache-Control': 'no-store, no-cache, must-revalidate, proxy-revalidate',
+        'Pragma': 'no-cache',
+        'Expires': '0',
+      },
+    });
   }
 
   const song = await response.json();
 
   // Not a track (podcast, etc.)
   if (song.currently_playing_type !== 'track') {
-    return Response.json({ isPlaying: false });
+    return Response.json({ isPlaying: false }, {
+      headers: {
+        'Cache-Control': 'no-store, no-cache, must-revalidate, proxy-revalidate',
+        'Pragma': 'no-cache',
+        'Expires': '0',
+      },
+    });
   }
 
   const data = {
@@ -26,5 +39,11 @@ export async function GET() {
     songUrl: song.item.external_urls.spotify,
   };
 
-  return Response.json(data);
+  return Response.json(data, {
+    headers: {
+      'Cache-Control': 'no-store, no-cache, must-revalidate, proxy-revalidate',
+      'Pragma': 'no-cache',
+      'Expires': '0',
+    },
+  });
 }
